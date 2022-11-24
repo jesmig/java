@@ -13,12 +13,14 @@ public class Vivienda {
     private int NumeroDePersonasEnlaCasa;
     private String mensajeDeSugerencias;
 
-    public Vivienda(String codigo, String direccion, int NUmeroDePersonasEnlaCasa) {
+    public Vivienda(String codigo, String direccion, int NumeroDePersonasEnlaCasa, String mensajeDeSugerencias) {
         this.codigo = codigo;
         this.direccion = direccion;
-        this.NumeroDePersonasEnlaCasa = NUmeroDePersonasEnlaCasa;
-   
+        this.NumeroDePersonasEnlaCasa = NumeroDePersonasEnlaCasa;
+        this.mensajeDeSugerencias = mensajeDeSugerencias;
     }
+
+
 
     public Vivienda() {
         
@@ -66,13 +68,17 @@ public class Vivienda {
     
 
     
-    
+    public float calculoImpuesto(){
+
+        return 0;
+        
+    }
 
     
     
     
     
-    public static String ingresarCodigoDireccionYmensajeDeSugerencia(String tipo){
+    public String ingresarString(String tipo){
         
         Scanner entrada = new Scanner(System.in);
         String codigo;
@@ -83,24 +89,23 @@ public class Vivienda {
         if(tipo.equals("codigo")){
             
             System.out.print("ingresa el codigo de la vivienda: ");
-            codigo = entrada.nextLine();
             
-            entrega = codigo;
+            entrega = entrada.nextLine();
             
             
         }else if(tipo.equals("direccion")){
             
             System.out.print("\ningresa la direccion de la vivienda: ");
-            direccion = entrada.nextLine();
+         
             
-            entrega =  direccion;
+            entrega =  entrada.nextLine();
             
         }else if(tipo.equals("mensajeDeSugerencia")){
             
             
         System.out.print("\ningresa un mensaje de sugerencia: ");
-        mensajeDeSugerencia = entrada.nextLine();
-        entrega = mensajeDeSugerencia;
+        
+        entrega = entrada.nextLine();
         }
         
         
@@ -115,11 +120,11 @@ public class Vivienda {
         
         
         Scanner entrada = new Scanner(System.in);
+        
         int numero = 0;
         
         while(!entrada.hasNextInt()){
-            
-             String next = entrada.next();
+
             
             System.out.print("\ndebes ingresar un numero entero");
             
@@ -146,6 +151,34 @@ public class Vivienda {
             
         
     }
+    
+    
+    public String mostrarDatos(){
+        
+        
+        
+        return "el codigo de la vivienda es: " + codigo + ""
+                    + "\nla direccion de la vivienda es: " + direccion
+                    + "\nlas personas que viven en la vivienda son: " + NumeroDePersonasEnlaCasa
+                    + "\nel mensaje de sugerencia ingresado fue: " + mensajeDeSugerencias;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 
@@ -194,6 +227,15 @@ public class Vivienda {
     
 
     
+    
+  
+    
+    
+    
+    
+    
+}
+
     
   
     
