@@ -41,7 +41,7 @@ public class Principal {
           System.out.println("\nvivienda propia numero " + (i + 1));
           casaPropia[i] = new Propia();
           casaPropia[i] = casaPropia[i].leer();
-          System.out.println(casaPropia[i].mostrarDatos(casaPropia[i]));
+          System.out.println(casaPropia[i].mostrarDatos());
           
 
           
@@ -57,7 +57,7 @@ public class Principal {
           
           casaAlquilada[i] = new Alquilada();
           casaAlquilada[i] = casaAlquilada[i].leer();
-          System.out.print(casaAlquilada[i].mostrarDatos(casaAlquilada[i]));
+          System.out.print(casaAlquilada[i].mostrarDatos());
           
 
           
@@ -72,8 +72,8 @@ public class Principal {
           casaComodato[i] = new Comodato();
           System.out.println("\nvivienda comodato numero " + (i + 1));
           casaComodato[i] = casaComodato[i].leer();
-          casaComodato[i].mostrarDatos(casaComodato[i]);
-          System.out.print(casaComodato[i].mostrarDatos(casaComodato[i]));
+          
+          System.out.print(casaComodato[i].mostrarDatos());
           
           
       }
@@ -82,9 +82,9 @@ public class Principal {
       
       for(int i = 0; i < 3; i++){
           
-        totalImpuestosDecasasPropias = totalImpuestosDecasasPropias + Propia.calculoImpuesto(casaPropia[i]);
-        totalImpuestosDecasasAlquilada = totalImpuestosDecasasAlquilada + Alquilada.calculoImpuesto(casaAlquilada[i]);
-        totalImpuestosDecasasComodato = totalImpuestosDecasasComodato + Comodato.calculoImpuesto(casaComodato[i]);
+        totalImpuestosDecasasPropias = totalImpuestosDecasasPropias + casaPropia[i].calculoImpuesto();
+        totalImpuestosDecasasAlquilada = totalImpuestosDecasasAlquilada +  casaAlquilada[i].calculoImpuesto();
+        totalImpuestosDecasasComodato = totalImpuestosDecasasComodato + casaComodato[i].calculoImpuesto();
                     
                     
                         
