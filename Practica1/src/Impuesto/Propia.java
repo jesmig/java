@@ -14,7 +14,7 @@ public class Propia extends Vivienda{
     
 
     public Propia(String fechaCompra, float MontoCompra, String codigo, String direccion, int NUmeroDePersonasEnlaCasa, String mensajeDeSugerencias) {
-        super(codigo, direccion, NUmeroDePersonasEnlaCasa);
+        super(codigo, direccion, NUmeroDePersonasEnlaCasa, mensajeDeSugerencias);
         this.fechaCompra = fechaCompra;
         this.MontoCompra = MontoCompra;
         this.MensajeDeSugerencias = mensajeDeSugerencias;
@@ -25,14 +25,6 @@ public class Propia extends Vivienda{
 
     }
 
-    public String getMensajeDeSugerencias() {
-        return MensajeDeSugerencias;
-    }
-
-    public void setMensajeDeSugerencias(String MensajeDeSugerencias) {
-        this.MensajeDeSugerencias = MensajeDeSugerencias;
-    }
-    
     
     
 
@@ -78,36 +70,35 @@ public class Propia extends Vivienda{
         
         
 
-      Propia casaPropia = new Propia(fechaCompra, MontoCompra, Vivienda.ingresarCodigoDireccionYmensajeDeSugerencia("codigo") , Vivienda.ingresarCodigoDireccionYmensajeDeSugerencia("direccion"), Vivienda.validacionEnteros("numeroDePersonasDeLaVivienda"), Vivienda.ingresarCodigoDireccionYmensajeDeSugerencia("mensajeDeSugerencia"));
+      Propia casaPropia = new Propia(fechaCompra, MontoCompra, super.ingresarString("codigo") , super.ingresarString("direccion"), Vivienda.validacionEnteros("numeroDePersonasDeLaVivienda"), super.ingresarString("mensajeDeSugerencia"));
       
        return casaPropia; 
     }
     
     
     
-        public static float calculoImpuesto(Propia casaPropia){
+    @Override
+        public float calculoImpuesto(){
         
-        float monto  = casaPropia.getMontoCompra() * 0.01F;
+        float monto  = MontoCompra * 0.01F;
         
         
          
-            System.out.println(monto);
+            
         return monto;
         
     }
         
         
-        public String mostrarDatos(Propia casaPropia){
+    @Override
+        public String mostrarDatos(){
             
-            
-            return "el codigo de la vivienda es: " + casaPropia.getCodigo() + ""
-                    + "\nla direccion de la vivienda es: " + casaPropia.getDireccion()
-                    + "\nlas personas que viven en la vivienda son: " + casaPropia.getNumeroDePersonasEnlaCasa()
-                    + "\nla fecha de compra de la vivienda fue:" + casaPropia.getFechaCompra()
-                    + "\nel monto que fue pagado por la vivienda fue: " + casaPropia.getMontoCompra()
-                    + "\nel impuesto a pagar por la vivienda propia es : " +casaPropia.calculoImpuesto(casaPropia)
-            
-                    + "\nel mensaje de sugerencia ingresado fue: " + casaPropia.getMensajeDeSugerencias();
+            System.out.print(super.mostrarDatos());
+            return 
+                    "\nla fecha de compra de la vivienda fue:" + fechaCompra
+                    + "\nel monto que fue pagado por la vivienda fue: " + MontoCompra
+                    + "\nel impuesto a pagar por la vivienda propia es : " +calculoImpuesto();
+
         }
         
 }
