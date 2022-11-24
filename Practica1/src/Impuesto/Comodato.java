@@ -9,11 +9,12 @@ public class Comodato extends Vivienda {
     private int mesesDelComodato;
     private float valorAlquilerMercadoActual;
 
-    public Comodato(int mesesDelComodato, float valorAlquilerMercadoActual, String codigo, String direccion, int NUmeroDePersonasEnlaCasa) {
-        super(codigo, direccion, NUmeroDePersonasEnlaCasa);
+    public Comodato(int mesesDelComodato, float valorAlquilerMercadoActual, String codigo, String direccion, int NumeroDePersonasEnlaCasa, String mensajeDeSugerencias) {
+        super(codigo, direccion, NumeroDePersonasEnlaCasa, mensajeDeSugerencias);
         this.mesesDelComodato = mesesDelComodato;
         this.valorAlquilerMercadoActual = valorAlquilerMercadoActual;
     }
+
 
     public Comodato() {
     }
@@ -58,18 +59,19 @@ public class Comodato extends Vivienda {
         
         
         
-        Comodato casaComodato = new Comodato(mesesComodato, ValorAlquilerMercadoActual, Vivienda.ingresarCodigoDireccionYmensajeDeSugerencia("codigo") , Vivienda.ingresarCodigoDireccionYmensajeDeSugerencia("direccion"), Vivienda.validacionEnteros("numeroDePersonasDeLaVivienda"));
+        Comodato casaComodato = new Comodato(mesesComodato, ValorAlquilerMercadoActual, super.ingresarString("codigo") , super.ingresarString("direccion"), Vivienda.validacionEnteros("numeroDePersonasDeLaVivienda"), super.ingresarString("mensajeDeSugerencia"));
         
         return casaComodato;
         
     }
     
     
-        public static float calculoImpuesto(Comodato casaComodato){
+    @Override
+        public float calculoImpuesto(){
         
         float monto = 0;
         
-        monto = casaComodato.getValorAlquilerMercadoActual()* 0.15F;
+        monto = valorAlquilerMercadoActual * 0.15F;
          
         
         return monto;
@@ -77,15 +79,16 @@ public class Comodato extends Vivienda {
     }
         
         
-    public String mostrarDatos(Comodato casaComodato){
+    @Override
+    public String mostrarDatos(){
+            
+        System.out.print(super.mostrarDatos());
         
-        return "el codigo de la vivienda es: " + casaComodato.getCodigo() + ""
-                    + "\nla direccion de la vivienda es: " + casaComodato.getDireccion()
-                    + "\nlas personas que viven en la vivienda son: " + casaComodato.getNumeroDePersonasEnlaCasa()
-                    + "\nlos meses del comodato son: " + casaComodato.getMesesDelComodato()
-                    + "\nel valor de alquiler en el mercado actual de la vivienda es: " + casaComodato.getValorAlquilerMercadoActual()
-                    + "\nel impuesto a pagar por la vivienda es de: " + casaComodato.calculoImpuesto(casaComodato)
-                    + "\nel mensaje de sugerencia ingresado fue: " + casaComodato.getMensajeDeSugerencias();
+        return 
+                      "\nlos meses del comodato son: " + mesesDelComodato
+                    + "\nel valor de alquiler en el mercado actual de la vivienda es: " + valorAlquilerMercadoActual
+                    + "\nel impuesto a pagar por la vivienda es de: " + calculoImpuesto();
+                   
     }
     
 }
