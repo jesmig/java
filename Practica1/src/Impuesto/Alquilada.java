@@ -7,13 +7,16 @@ public class Alquilada extends Vivienda {
     
     
     private float MontoAlquiler;
-    private String mensajeDeSugerencia;
 
-    public Alquilada(float MontoAlquiler, String codigo, String direccion, int NUmeroDePersonasEnlaCasa, String mensajeDeSugerencia) {
-        super(codigo, direccion, NUmeroDePersonasEnlaCasa);
-        this.mensajeDeSugerencia = mensajeDeSugerencia;
+    public Alquilada(float MontoAlquiler, String codigo, String direccion, int NumeroDePersonasEnlaCasa, String mensajeDeSugerencias) {
+        super(codigo, direccion, NumeroDePersonasEnlaCasa, mensajeDeSugerencias);
         this.MontoAlquiler = MontoAlquiler;
     }
+
+    
+    
+
+    
 
     public Alquilada() {
     }
@@ -28,45 +31,40 @@ public class Alquilada extends Vivienda {
     public void setMontoAlquiler(float MontoAlquiler) {
         this.MontoAlquiler = MontoAlquiler;
     }
-
-    public String getMensajeDeSugerencia() {
-        return mensajeDeSugerencia;
-    }
-
-    public void setMensajeDeSugerencia(String mensajeDeSugerencia) {
-        this.mensajeDeSugerencia = mensajeDeSugerencia;
-    }
-    
-    
     
     public Alquilada leer(){
 
-        Alquilada casaAlquilada = new Alquilada(verificarDecimales("montoAlquiler"),Vivienda.ingresarCodigoDireccionYmensajeDeSugerencia("codigo") , Vivienda.ingresarCodigoDireccionYmensajeDeSugerencia("direccion"), Vivienda.validacionEnteros("numeroDePersonasDeLaVivienda"), Vivienda.ingresarCodigoDireccionYmensajeDeSugerencia("mensajeDeSugerencia"));
+        Alquilada casaAlquilada = new Alquilada(verificarDecimales("montoAlquiler"),super.ingresarString("codigo") , super.ingresarString("direccion"), Vivienda.validacionEnteros("numeroDePersonasDeLaVivienda"), super.ingresarString("mensajeDeSugerencia"));
         
         return casaAlquilada;
     }
     
     
-    public static float calculoImpuesto(Alquilada casaAlquilada){
+    @Override
+    public  float calculoImpuesto(){
         
         float monto = 0;
         
-        monto = casaAlquilada.getMontoAlquiler() * 0.10F;
+        monto = MontoAlquiler * 0.10F;
          
         
         return monto;
         
     }
     
-    
-    public String mostrarDatos(Alquilada casaAlquilada){
+    /**
+     *
+     * @return
+     */
+    @Override
+    public String mostrarDatos(){
         
-        return "el codigo de la vivienda es: " + casaAlquilada.getCodigo() + ""
-                    + "\nla direccion de la vivienda es: " + casaAlquilada.getDireccion()
-                    + "\nlas personas que viven en la vivienda son: " + casaAlquilada.getNumeroDePersonasEnlaCasa()
-                    + "\nel monto que se paga de alquiler por la vivienda es: " + casaAlquilada.getMontoAlquiler()
-                    + "\nel impuesto que se pagara por la vivienda alquilada es: " + casaAlquilada.calculoImpuesto(casaAlquilada)
-            
-                    + "\nel mensaje de sugerencia ingresado fue: " + casaAlquilada.getMensajeDeSugerencias();
+        System.out.print(super.mostrarDatos());
+        
+        return      
+                    "\nel monto que se paga de alquiler por la vivienda es: " + MontoAlquiler
+                    + "\nel impuesto que se pagara por la vivienda alquilada es: " + calculoImpuesto();
+ 
     }
 }
+
